@@ -1,3 +1,21 @@
+
+% User Specific Vars
+user = 2;
+switch (user)
+    case 1
+        username = 'lstruz';
+        ieegLoginFile = 'lst_ieeglogin.bin';
+    case 2
+        username = 'mdshahid';
+        cd('D:\Work\MSE2013-2014\Spring_2014\BCI\');
+            addpath(genpath(cd));
+            cd('FinalProject/rECoGnition');
+        ieegLoginFile = 'msh_ieeglogin.bin'
+    case 3       
+        % nick - insert yours here :) <333
+end
+
+
 % %I averaged finger position within each window, rather than downsampling
 %windowlength for subject 1 should be 100
 %windowlength for subject 2 should be 125
@@ -7,19 +25,19 @@
 % 
 %Data Extraction
 clearvars -except sub1test_dg sub2test_dg sub3test_dg
-Patient1ECoG=IEEGSession('I521_A0011_D001','lstruz','lst_ieeglogin.bin')
+Patient1ECoG=IEEGSession('I521_A0011_D001',username, ieegLoginFile)
 
 for i=1:64
 Patient1Channel(i,:)=Patient1ECoG.data.getvalues(1:400000,i);
 end
 
-Patient1Glove=IEEGSession('I521_A0011_D002','lstruz','lst_ieeglogin.bin')
+Patient1Glove=IEEGSession('I521_A0011_D002',username, ieegLoginFile)
 
 for i=1:5
 Patient1Fingers(i,:)=Patient1Glove.data.getvalues(1:400000,i);
 end
 
-Patient1Test=IEEGSession('I521_A0011_D003','lstruz','lst_ieeglogin.bin')
+Patient1Test=IEEGSession('I521_A0011_D003',username, ieegLoginFile)
 
 for i=1:64
 Patient1ChannelTest(i,:)=Patient1Test.data.getvalues(1:200000,i);
